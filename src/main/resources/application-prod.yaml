@@ -1,0 +1,24 @@
+server:
+  port: 8761
+  
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: ${HOSTNAME}
+  client:
+    register-with-eureka: false  # El servidor Eureka no se registra consigo mismo
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 30000  # Cada cuánto tiempo verifica las instancias inactivas
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
